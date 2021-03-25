@@ -5,8 +5,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import lombok.Builder;
 import lombok.Data;
-
 @Component
 @Data
 public class QnaBoardDto implements Serializable {
@@ -17,4 +17,9 @@ public class QnaBoardDto implements Serializable {
     private String content;
     private Date regDate;
     private String comments;
+
+  
+   
+
+
 }

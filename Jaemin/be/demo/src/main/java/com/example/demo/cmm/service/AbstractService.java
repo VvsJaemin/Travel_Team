@@ -1,5 +1,9 @@
 package com.example.demo.cmm.service;
 
-public class AbstractService {
+import java.util.List;
+import java.util.Optional;
 
+public abstract class AbstractService<T> {
+    public abstract T save(T entity);
+	
 }

@@ -4,7 +4,9 @@ package com.example.demo.qbs.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import com.example.demo.cmm.service.AbstractService;
 import com.example.demo.qbs.domain.QnaBoard;
 import com.example.demo.qbs.repository.QnaBoardRepository;
 
@@ -15,45 +17,51 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class QnaBoardServiceImpl implements QnaBoardService{
+public class QnaBoardServiceImpl extends AbstractService <QnaBoard> implements QnaBoardService{
     
-    private final QnaBoardRepository repository;
+    private final QnaBoardRepository repo;
 
     @Override
     public void register(QnaBoard qnaboard) throws Exception {
-        
-
-        repository.create(qnaboard);
+        // TODO Auto-generated method stub
         
     }
 
     @Override
     public QnaBoard read(Long boardNo) throws Exception {
-        
-       System.out.println("Q&A BoardService read(boardNo): " + boardNo );
-
-        return repository.read(boardNo);
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
     public void modify(QnaBoard qnaboard) throws Exception {
-        System.out.println("Q&A BoardService modify(qnaboard) : " + qnaboard);      
+        // TODO Auto-generated method stub
         
-        repository.update(qnaboard);
     }
 
     @Override
     public void remove(Long boardNo) throws Exception {
-        
-        repository.remove(boardNo);
+        // TODO Auto-generated method stub
         
     }
 
     @Override
     public List<QnaBoard> list() throws Exception {
-
-        return repository.list();
+        // TODO Auto-generated method stub
+        return null;
     }
+
+    @Override
+    public QnaBoard save(QnaBoard entity) {
+        
+        return null;
+    }
+
+  
+
+
+
+   
 
     
 
