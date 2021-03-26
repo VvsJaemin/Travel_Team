@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.qbs.domain.QnaBoard;
 import com.example.demo.qbs.domain.QnaBoardDto;
 import com.example.demo.qbs.service.QnaBoardService;
+import com.example.demo.qbs.service.QnaBoardServiceImpl;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,21 +34,26 @@ import lombok.extern.java.Log;
 @CrossOrigin(origins="*")
 public class QnaBoardController {
 
-    private final QnaBoardService service;
+    private final QnaBoardServiceImpl service; // 
 
- 
-     @PostMapping("")
-     public ResponseEntity<QnaBoard> register(
-             @RequestBody QnaBoard qnaboard) throws Exception {
-         log.info("POST register()");
- 
-        service.register(qnaboard);
- 
-         log.info("register board.getBoardNo() = " + qnaboard.getBoardNo());
-        
-         return new ResponseEntity<>(qnaboard, HttpStatus.OK);
+    @PostMapping("/reg")
+    public ResponseEntity<?> save(
+            @RequestBody QnaBoard qnaboard){
+                log.info("등록완료");
+                service.save(qnaboard);
 
-    }
+                log.info("register board.getBoardNo() = " + qnaboard.getBoardNo());
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+    
+        @GetMapping("/list")
+        public ResponseEntity<?> list(){
+
+            log.info("list()");
+
+            return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+        }
+
 
 
 }

@@ -5,15 +5,12 @@ const App =()=> {
   const test =e=>{
       e.preventDefault()
       alert('테스트')
-      axios.post(`http://localhost:8080/qna`,
+      axios.get(`http://localhost:8080/qna/list`,
       {
-        "title": "aa",
-        "content": "aa",
-        "writer": "asd",
-        "comments": "asa"
+   
       })
         .then(res=>{
-          alert(`테스트 성공: ${JSON.stringify(res.data)}`)
+          alert(`테스트 성공: ${JSON.stringify(res)}`)
         })
         .catch(err=>{
           alert(`다시 시도 해주세요 : ${err}`)

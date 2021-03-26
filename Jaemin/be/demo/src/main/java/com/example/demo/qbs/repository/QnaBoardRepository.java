@@ -13,15 +13,33 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
        
 @Repository
 public interface QnaBoardRepository extends JpaRepository<QnaBoard, Long>{
 
-
+    @Transactional
     @Modifying
     @Query(value="insert into qnas (title, content, writer, comments) values (:title, :content, :writer, :comments)", nativeQuery = true)
-    public void create(@Param("title") String title, @Param("content") String content, @Param("writer") String writer, @Param("comments") String comments); 
+    public void create(@Param("title") String title, @Param("content") String content, @Param("writer") String writer, @Param("comments") String comments);
+
+  
 
     
+
+    // @Query(value="SELECT board_no boardNo, title, content, writer, comments, reg_date regDate FROM qnas WHERE board_no LIKE :boardNo", nativeQuery = true)
+    // public QnaBoard read(@Param("boardNo") long boardNo);
+
+    // @Modifying
+    // @Query(value="UPDATE qnas SET title = :title, content = :content, comments = :comments WHERE board_no LIKE :boardNo", nativeQuery=true)
+    // public void update(@Param("title") String title, @Param("content") String content, @Param("comments")String comments);
+
+    // @Query(value="DELETE FROM qnas where board_no LIKE :boardNo", nativeQuery = true)
+    // public void delete(@Param("boardNo") long BoardNo);
+
+    // @Query(value="SELECT board_no boardNo, title, content, writer, comments, reg_date regDate FROM qnas WHERE board_no LIKE :boardNo", nativeQuery=true)
+
+    // public void list (@Param("boardNo") long boardNo, @Param("title") String title, @Param("content") String content,  @Param ("writer") String writer, @Param ("regDate") Date regDate, @Param("comments") String comments);
+
 }

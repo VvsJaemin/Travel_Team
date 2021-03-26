@@ -30,9 +30,7 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
     @Override
     public void register(QnaBoard qnaboard) throws Exception {
         // TODO Auto-generated method stub
-
         repo.create(qnaboard.getTitle(), qnaboard.getContent(), qnaboard.getWriter(), qnaboard.getComments());
-        
     }
 
     @Override
@@ -50,7 +48,7 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
     @Override
     public List<QnaBoard> findAll() {
         // TODO Auto-generated method stub
-        return null;
+        return repo.findAll();
     }
 
     @Override
@@ -74,16 +72,21 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
     @Override
     public QnaBoard save(QnaBoard entity) {
         // TODO Auto-generated method stub
-        return null;
+        return repo.save(entity);
     }
 
-  
-
-   
+    @Override
+    public void findById(long id) {
+        // TODO Auto-generated method stub
+        
+        return;
+    }
 
     
-   
 
+    
+
+   
 
  
  

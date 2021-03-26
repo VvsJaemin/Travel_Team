@@ -12,6 +12,13 @@ public interface QnaBoardService {
 
     public void register(QnaBoard qnaboard) throws Exception;
 
+    
+
+
+   
+
+   
+
 
 
 

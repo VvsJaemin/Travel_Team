@@ -7,3 +7,19 @@
 [0326/004558.180:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
 [0326/004558.180:ERROR:crash_report_database_win.cc(457)] unexpected header
 [0326/004558.180:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/093428.444:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/094428.451:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/094428.472:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0326/094428.472:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/094428.472:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/094928.450:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/100428.460:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/101928.465:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/103428.474:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/104017.062:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/104928.481:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/110428.485:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/111613.201:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/111928.497:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0326/112408.717:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0327/000755.085:ERROR:crash_report_database_win.cc(457)] unexpected header

@@ -3,17 +3,15 @@ package com.example.demo.qbs.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
 
 import lombok.Builder;
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 import lombok.ToString;
-@Component
+
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 public class QnaBoardDto implements Serializable {
