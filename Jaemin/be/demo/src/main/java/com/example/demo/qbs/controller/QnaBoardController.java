@@ -34,7 +34,7 @@ import lombok.extern.java.Log;
 @CrossOrigin(origins="*")
 public class QnaBoardController {
 
-    private final QnaBoardServiceImpl service; // 
+    private final QnaBoardServiceImpl service; 
 
     @PostMapping("/reg")
     public ResponseEntity<?> save(
@@ -46,14 +46,45 @@ public class QnaBoardController {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
     
-        @GetMapping("/list")
-        public ResponseEntity<?> list(){
+            @GetMapping("/list")
+            public ResponseEntity<?> list(){
+    
+                log.info("list()");
+    
+                return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+            }
 
-            log.info("list()");
 
-            return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
-        }
+            @GetMapping("/{boardNo}")
 
+            public ResponseEntity<?> read(){
+    
+                log.info("read()");
+                
+                
+                return new ResponseEntity<>(service.findOne(), HttpStatus.OK);
+            }
 
+            @DeleteMapping("/{boardNod}")
+
+            public ResponseEntity<?> remove(){
+
+                log.info("remove");
+
+                return new ResponseEntity<>(service.findOne(), HttpStatus.NO_CONTENT);
+            }
+
+            @PutMapping("/update")
+            public ResponseEntity<QnaBoard> update(
+                @RequestBody QnaBoard qnaboard) throws Exception{
+                    log.info("수정완료");
+
+                    log.info("Put - modify()");
+                    service.update(qnaboard);
+    
+                    log.info("modify board.getBoardNo() = " + qnaboard.getBoardNo());
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
+            
 
 }

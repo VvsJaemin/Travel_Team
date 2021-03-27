@@ -3,11 +3,13 @@ import axios from 'axios'
 
 const App =()=> {
   const test =e=>{
+
+
       e.preventDefault()
       alert('테스트')
-      axios.get(`http://localhost:8080/qna/list`,
+      axios.post(`http://localhost:8080/qna/reg`,
       {
-   
+          "title" : "t"
       })
         .then(res=>{
           alert(`테스트 성공: ${JSON.stringify(res)}`)

@@ -8,26 +8,9 @@ import com.example.demo.qbs.domain.QnaBoardDto;
 import org.springframework.stereotype.Service;
 
 public interface QnaBoardService {
-    
 
-    public void register(QnaBoard qnaboard) throws Exception;
+    public void register(QnaBoard qnaboard)throws Exception;
 
-    
+    public void update(QnaBoard qnaboard)throws Exception;
 
-
-   
-
-   
-
-
-
-
-    // public QnaBoard read(Long boardNo) throws Exception;
-
-    // public void modify(QnaBoard qnaboard) throws Exception;
-
-    // public void remove(Long boardNo) throws Exception;
-
-    // public List<QnaBoard> list() throws Exception;
-    
 }

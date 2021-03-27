@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "qnas")
 public class QnaBoard {
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "board_no")
     private long boardNo;
     @Column(name = "title")
@@ -31,21 +31,19 @@ public class QnaBoard {
     private String content;
     @Column(name = "writer")
     private String writer;
-    @Column(name = "comments")
-    private String comments;
     @Temporal(TemporalType.TIMESTAMP)  
     @Column(name = "reg_date")
     private Date regDate;
    
    
     @Builder
-    public QnaBoard(long boardNo, String title, String writer, String content, Date regDate, String comments) {
+    public QnaBoard(long boardNo, String title, String writer, String content, Date regDate) {
         this.boardNo = boardNo;
         this.title = title;
         this.writer = writer;
         this.content = content;
         this.regDate = regDate;
-        this.comments = comments;
+       
     }
 
 
