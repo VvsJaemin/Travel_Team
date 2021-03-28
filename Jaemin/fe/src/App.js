@@ -1,28 +1,20 @@
-import React from 'react'
-import axios from 'axios'
+import React, {useState} from 'react'
+import QnaRegister from './qbs/container/QnaRegister'
+import QnaList from './qbs/container/QnaList'
+import { Route } from 'react-router-dom'
+import Home from './cmm/container/Home'
+
 
 const App =()=> {
-  const test =e=>{
+  
+  return(<>
+    <Route path='/' component={Home} exact/>
+    <Route path='/QnaRegister' component={QnaRegister}/>
+    <Route path='/QnaList' component={QnaList}/>
 
+  </>)
 
-      e.preventDefault()
-      alert('테스트')
-      axios.post(`http://localhost:8080/qna/reg`,
-      {
-          "title" : "t"
-      })
-        .then(res=>{
-          alert(`테스트 성공: ${JSON.stringify(res)}`)
-        })
-        .catch(err=>{
-          alert(`다시 시도 해주세요 : ${err}`)
-        })
   }
-
-  return (
-    <div><h1>테스트</h1><button onClick={test}>등록</button></div>
-  )
  
-}
 
 export default App;

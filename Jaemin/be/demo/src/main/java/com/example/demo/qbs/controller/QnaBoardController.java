@@ -65,15 +65,6 @@ public class QnaBoardController {
                 return new ResponseEntity<>(service.findOne(), HttpStatus.OK);
             }
 
-            @DeleteMapping("/{boardNod}")
-
-            public ResponseEntity<?> remove(){
-
-                log.info("remove");
-
-                return new ResponseEntity<>(service.findOne(), HttpStatus.NO_CONTENT);
-            }
-
             @PutMapping("/update")
             public ResponseEntity<QnaBoard> update(
                 @RequestBody QnaBoard qnaboard) throws Exception{
@@ -84,6 +75,15 @@ public class QnaBoardController {
     
                     log.info("modify board.getBoardNo() = " + qnaboard.getBoardNo());
                     return new ResponseEntity<>(HttpStatus.OK);
+                }
+
+                @DeleteMapping("/{boardNod}")
+
+                public ResponseEntity<?> remove(){
+    
+                    log.info("remove");
+    
+                    return new ResponseEntity<>(service.findOne(), HttpStatus.NO_CONTENT);
                 }
             
 

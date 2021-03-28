@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import App from './App.js'
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom'
-import  QnaRegister from
-'./qbs/container/QnaRegister'
-import QnaList from './qbs/container/QnaList';
+import { BrowserRouter } from 'react-router-dom'
+
 
 ReactDOM.render(
   <React.StrictMode>

@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "qnas")
 public class QnaBoard {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "board_no")
     private long boardNo;
     @Column(name = "title")
