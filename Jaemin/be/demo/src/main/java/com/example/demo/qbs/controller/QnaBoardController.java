@@ -55,27 +55,26 @@ public class QnaBoardController {
             }
 
 
-            @GetMapping("/{boardNo}")
+           
+        	@GetMapping("/list/{id}")
+	public ResponseEntity<QnaBoard> getOne(@PathVariable Long id){
+		System.out.println("read()");
+		
+		return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+	}
+            
 
-            public ResponseEntity<?> read(){
-    
-                log.info("read()");
-                
-                
-                return new ResponseEntity<>(service.findOne(), HttpStatus.OK);
+            
+            @PutMapping("/{boardNo}")
+            public ResponseEntity<QnaBoard> modify(@PathVariable("boardNo") Long boardNo, @RequestBody QnaBoard qnaboard){
+
+            qnaboard.getBoardNo();
+            service.save(qnaboard);
+
+            log.info("Put - modify()");
+            
+            return new ResponseEntity<>(qnaboard, HttpStatus.OK);
             }
-
-            @PutMapping("/update")
-            public ResponseEntity<QnaBoard> update(
-                @RequestBody QnaBoard qnaboard) throws Exception{
-                    log.info("수정완료");
-
-                    log.info("Put - modify()");
-                    service.update(qnaboard);
-    
-                    log.info("modify board.getBoardNo() = " + qnaboard.getBoardNo());
-                    return new ResponseEntity<>(HttpStatus.OK);
-                }
 
                 @DeleteMapping("/{boardNod}")
 

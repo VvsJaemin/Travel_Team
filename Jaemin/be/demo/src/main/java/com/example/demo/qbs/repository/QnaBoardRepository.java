@@ -28,6 +28,7 @@ public interface QnaBoardRepository extends JpaRepository<QnaBoard, Long>{
     @Modifying
     @Query(value = "UPDATE qnas SET title =:title, content = :content WHERE board_no LIKE :boardNo", nativeQuery = true) public void modify(@Param("title") String title, @Param("content") String content, @Param("boardNo") long boardNo );
     
+        // WHERE board_no Like
 
     // @Query(value="SELECT board_no boardNo, title, content, writer, comments, reg_date regDate FROM qnas WHERE board_no LIKE :boardNo", nativeQuery = true)
     // public QnaBoard read(@Param("boardNo") long boardNo);

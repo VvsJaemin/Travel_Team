@@ -53,7 +53,7 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
 
     @Override public QnaBoard getOne(long id) {
         // TODO Auto-generated method stub
-        return null;
+        return repo.getOne(id);
     }
 
     @Override public QnaBoard save(QnaBoard entity) {
