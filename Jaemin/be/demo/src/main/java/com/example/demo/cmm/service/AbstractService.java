@@ -14,7 +14,7 @@ public abstract class AbstractService<T> {
 	public abstract void deleteById(long id);
 	public abstract T getOne(long id);
 	public abstract QnaBoard save(T entity);
-	public abstract void findById(long id);
+	public abstract  Optional<QnaBoard> findById(long id);
 
 	
 }

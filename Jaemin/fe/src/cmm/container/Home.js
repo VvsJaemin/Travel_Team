@@ -6,7 +6,6 @@ const Home =()=>{
     <div style={{width: 150, margin: "0 auto"}}><h1>Home</h1>
     <Link to={"QnaRegister"}>QnaRegister</Link><br/>
     <Link to={"QnaList"}>QnaList</Link><br/>
-    <Link to={"QnaModify"}>QnaModify</Link><br/>
     <Link to={"QnaRead"}>QnaRead</Link>
     </div>
     </>)

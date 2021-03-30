@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 
-const QnaRegister =()=>{
+const QnaRegister =(prpos)=>{
    const [title, setTitle] = useState("")
    const [content, setContent] = useState("")
    const [writer, setWriter] = useState("")
+
   
 const onChangeTitle=(e)=>{
     setTitle(e.target.value)
@@ -19,9 +21,11 @@ const onChangeWriter=(e)=>{
 }
 
 
+
+
     const reg =(e)=>{
         e.preventDefault()
-        axios.post('http://localhost:8080/qna/reg',{
+        axios.post('http://localhost:8080/qna',{
         
         title, 
         content,
@@ -29,7 +33,9 @@ const onChangeWriter=(e)=>{
 
         })
         .then(res => {
-            alert(`테스트 성공: ${JSON.stringify(res)}`)
+            console.log(res)
+            alert('게시글 등록이 완료되었습니다.')
+            prpos.history.push('/')
         })
         .catch(err =>{
             alert(`다시 등록 해주세요: ${err}`)
@@ -59,8 +65,8 @@ return(
             <tr>
                 <td>
                     <input type='button' onClick={reg} value='등록'/>
-                   
                 </td>
+              <td><Link to="./QnaList"><button>취소</button></Link></td>  
             </tr>
         </tbody>
     </table>

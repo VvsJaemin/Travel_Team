@@ -12,11 +12,12 @@ import Home from './cmm/container/Home'
 const App =()=> {
   
   return(<>
-    <Route path='/' component={Home} exact/>
+    <Route path='/' component={QnaList} exact/>
     <Route path='/QnaRegister' component={QnaRegister}/>
     <Route path='/QnaList' component={QnaList}/>
-    <Route path='/QnaModify' component={QnaModify}/>
-    <Route path='/QnaRead/:boardNo' component={QnaRead}/>
+    <Route path='/QnaModify/:Id' component={QnaModify}/>
+    <Route path='/QnaRead/:id' component={QnaRead}/>
+    
  
    
 

@@ -6,9 +6,10 @@ const QnaRead=(props)=>{
 
     const [detail, setDetail] = useState({})
 
+
     const fetchOne = ()=>{
 
-        axios.get(`http://localhost:8080/qna/list/{id}`)
+        axios.get(`http://localhost:8080/qna/read/${props.match.params.id}`)
         .then(res =>{
             console.log(res)
             setDetail(res.data)
@@ -18,9 +19,21 @@ const QnaRead=(props)=>{
         });
     };
 
+    const deleteOne =()=>{
+        axios.delete(`http://localhost:8080/qna/delete/${props.match.params.id}`)
+        .then(res=>{
+            console.log(res)
+            alert('등록하신 글이 삭제 되었습니다.')
+            props.history.push('/')
+        })
+        .catch((err=>{
+            console.log(err)
+        }))
+    }
+
     useEffect(()=>{
         fetchOne();
-    
+        
     }, [])
 
     return(
@@ -37,18 +50,21 @@ const QnaRead=(props)=>{
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{detail.id}</td>
+                        <td>{detail.boardNo}</td>
                         <td>{detail.title}</td>
                         <td>{detail.content}</td>
                         <td>{detail.writer}</td>
                     </tr>
                 </tbody>
             </table>
-            <Link to ='./qna/list'>
-                <button>목록으로</button>
-                </Link>
+            <div><Link to={`/QnaModify/${detail.boardNo}`}><button>수정하기</button></Link></div>
+                <button onClick={deleteOne} >삭제하기</button>
+                <td><Link to="/"><button>나가기</button></Link></td>  
+
             </div>
-        </>
+            
+            </>
+    
     )
 }
 

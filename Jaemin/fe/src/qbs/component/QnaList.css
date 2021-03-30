@@ -1,0 +1,27 @@
+div {
+  text-align: center
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  border-spacing: 0;
+}
+ 
+th {
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0;
+  font-size: 16px;
+  padding: 10px 5px;
+  font-weight: bold;
+}
+ 
+tr:hover {
+  background-color: #eceaea;
+  cursor: pointer;
+}
+ 
+td {
+  padding: 10px 5px;
+}

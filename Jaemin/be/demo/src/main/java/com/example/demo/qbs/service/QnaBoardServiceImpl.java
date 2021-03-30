@@ -48,7 +48,7 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
     }
 
     @Override public void deleteById(long id) {
-        // TODO Auto-generated method stub
+        repo.deleteById(id);
     }
 
     @Override public QnaBoard getOne(long id) {
@@ -61,10 +61,9 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
         return repo.save(entity);
     }
 
-    @Override public void findById(long id) {
-        // TODO Auto-generated method stub
+    @Override public Optional<QnaBoard> findById(long id) {
 
-        return;
+        return repo.findById(id);
     }
 
     @Override public void register(QnaBoard qnaboard)throws Exception {
