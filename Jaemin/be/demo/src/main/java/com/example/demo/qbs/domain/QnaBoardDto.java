@@ -3,6 +3,7 @@ package com.example.demo.qbs.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.OneToMany;
 
 import lombok.Builder;
 
@@ -21,7 +22,9 @@ public class QnaBoardDto implements Serializable {
     private String writer;
     private String content;
     private Date regDate;
- 
+    
+
+
 
     public QnaBoard toEntity(){
             return QnaBoard.builder()

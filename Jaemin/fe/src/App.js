@@ -4,7 +4,7 @@ import QnaList from './qbs/container/QnaList'
 import QnaModify from './qbs/container/QnaModify'
 import QnaRead from './qbs/container/QnaRead'
 import { Route } from 'react-router-dom'
-import Home from './cmm/container/Home'
+import UserRegister from './uss/container/UserRegister'
 
 
 
@@ -17,6 +17,7 @@ const App =()=> {
     <Route path='/QnaList' component={QnaList}/>
     <Route path='/QnaModify/:Id' component={QnaModify}/>
     <Route path='/QnaRead/:id' component={QnaRead}/>
+    <Route path='/UserRegister' component={UserRegister}/>
     
  
    
