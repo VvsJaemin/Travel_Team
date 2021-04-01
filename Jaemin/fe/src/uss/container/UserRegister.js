@@ -5,19 +5,28 @@ import axios from 'axios'
 const UserRegister = (props) => {
     const [register, setRegister] = useState({})
 
-    const {name, password, email} = register
+    const {
+        username,
+        password
+    
+    } = register
 
     const Register = e => {
         e.preventDefault()
         axios
-            .post(`http://localhost:8080/user`, {name, password, email})
+            .post(`http://localhost:8080/user`, {
+                username,
+                password
+            })
             .then(res => {
                 console.log(res)
                 alert("회원가입을 해주셔서 감사합니다.")
-                props.history.push('/')
+                props
+                    .history
+                    .push('/')
             })
-            .catch(err => {
-                alert(err)
+            .catch(() => {
+                alert("양식에 맞게 입력해주세요")
             })
         }
 
@@ -40,9 +49,9 @@ const UserRegister = (props) => {
                         </th>
                         <td><input
                             type='text'
-                            placeholder='아이디를 입력하세요'
-                            name='name'
-                            value={register.name}
+                            placeholder='아이디를 입력(10자이내)'
+                            name='username'
+                            value={register.username}
                             onChange={handleSubmit}/></td>
                     </tr>
                     <tr>
@@ -56,30 +65,34 @@ const UserRegister = (props) => {
                             value={register.password}
                             onChange={handleSubmit}/></td>
                     </tr>
-                    <tr>
+                  
+                    
+                    
+                    {/* <tr>
                         <th>
-                            이메일
+                            성별
                         </th>
-                        <td><input
-                            type='text'
-                            placeholder='이메일을 입력하세요'
-                            name='email'
-                            value={register.email}
-                            onChange={handleSubmit}/></td>
-                    </tr>
+                        <td>
+                            <select name="gender" value={register.gender} onChange={handleSubmit}>
+                                <option value="">성별</option>
+                                <option value="남성">남성</option>
+                                <option value="여성">여성</option>
+                            </select>
+                        </td>
+                    </tr> */}
                     <tr>
-                    <td>
-                        <input type='button' onClick={Register} value='등록'/> 
-                    </td>
-                    <td>
-                        <Link to="/QnaList">
-                            <button>취소</button>
-                        </Link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+                        <td>
+                            <input type='button' onClick={Register} value='등록'/>
+                        </td>
+                        <td>
+                            <Link to="/QnaList">
+                                <button>취소</button>
+                            </Link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
     )
 }
 

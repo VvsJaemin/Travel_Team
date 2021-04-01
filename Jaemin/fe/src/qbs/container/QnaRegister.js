@@ -18,8 +18,8 @@ const QnaRegister = (props) => {
                     .history
                     .push('/')
             })
-            .catch(err => {
-                alert(`다시 등록 해주세요: ${err}`)
+            .catch(() => {
+                alert(`빈 곳 없이 작성해주세요`)
             })
         }
 

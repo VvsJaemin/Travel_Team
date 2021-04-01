@@ -8,17 +8,17 @@ import lombok.NoArgsConstructor;
 public class UserDto implements Serializable {
     private static final long serialVersionUID  = 1L;
     private long userNo;
-    private String name;
+    private String username;
     private String password;
-    private String email;
 
     @Builder
-    public UserDto(long userNo, String name, String password, String email) {
+    public UserDto(long userNo, String username, String password) {
         this.userNo = userNo;
-        this.name = name;
+        this.username = username;
         this.password = password;
-        this.email = email;
     }
+
+
 
 
     

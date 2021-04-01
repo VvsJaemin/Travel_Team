@@ -1,54 +1,75 @@
 package com.example.demo.uss.domain;
+import java.beans.JavaBean;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.example.demo.qbs.domain.QnaBoard;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
 @Entity
 @NoArgsConstructor
 @Getter
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="user_no")
     private long userNo;
-    @Column(name="name")
-    private String name;
+    
+    @NotNull
+    @Column(name="`username`")
+    private String username;
+
     @Column(name="password")
     private String password;
-    @Column(name="email")
-    private String email;
+
+    // @Column(name="name")
+    // private String name;
+
+    // @Email
+    // @NotNull(message="이메일을 다시 입력해주세요")
+    // @Column(name="email")
+    // private String email;
+
+    // @Column(name="birthday")
+    // private String birthday;
+
+    // @Column(name="gender")
+    // private String gender;
    
-
-    @ManyToOne
-    @JoinColumn(name = "board_no")
-    private QnaBoard qnaboard;
-
 
     public User toEntity(){
         return User.builder()
         .userNo(userNo)
-        .name(name)
+        
         .password(password)
-        .email(email)
+        .username(username)
+     
         .build();
 
 }
-
-
-
-
-    @Builder
-    public User(long userNo, String name, String password, String email) {
+     @Builder
+    public User(long userNo, @NonNull @Size(min = 1, max = 10, message = "아이디는 10자 이내로 입력해주세요") String username,
+            String password) {
         this.userNo = userNo;
-        this.name = name;
+        this.username = username;
         this.password = password;
-        this.email = email;
     }
+
+
+
+
+
+
+
+
   
 }

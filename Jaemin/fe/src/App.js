@@ -5,6 +5,7 @@ import QnaModify from './qbs/container/QnaModify'
 import QnaRead from './qbs/container/QnaRead'
 import { Route } from 'react-router-dom'
 import UserRegister from './uss/container/UserRegister'
+import UserLogin from './uss/container/UserLogin'
 
 
 
@@ -18,9 +19,8 @@ const App =()=> {
     <Route path='/QnaModify/:Id' component={QnaModify}/>
     <Route path='/QnaRead/:id' component={QnaRead}/>
     <Route path='/UserRegister' component={UserRegister}/>
+    <Route path='/UserLogin' component={UserLogin}/>
     
- 
-   
 
   </>)
 

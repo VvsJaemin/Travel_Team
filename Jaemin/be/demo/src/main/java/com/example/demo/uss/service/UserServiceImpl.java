@@ -12,7 +12,8 @@ import com.example.demo.uss.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-
+import lombok.extern.java.Log;
+@Log
 @Service
 @AllArgsConstructor
 public class UserServiceImpl extends UserAbstractService<User>implements UserSevice {
@@ -64,8 +65,20 @@ public class UserServiceImpl extends UserAbstractService<User>implements UserSev
     @Override
     public Optional<User> findById(long id) {
         // TODO Auto-generated method stub
-        return null;
+        return repo.findById(id);
     }
+
+    @Override
+    public void login(User user) throws Exception {
+        // TODO Auto-generated method stub
+
+       repo.login(user.getUserNo(), user.getUsername(), user.getPassword());
+
+    
+        
+        
+    }
+    
 
     
 
