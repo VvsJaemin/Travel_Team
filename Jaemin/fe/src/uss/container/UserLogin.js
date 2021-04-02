@@ -4,12 +4,12 @@ import axios from 'axios'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const UserLogin =(props)=>{
-    const[login, setLogin] = useState("")
+    const[login, setLogin] = useState({})
     const {username, password} = login
 
     const loginOne =(e)=>{
         e.preventDefault();
-        axios.post(`http://localhost:8080/user/login`, {
+        axios.post(`http://localhost:8080/user/login/${username}/${password}`, {
           
           username,
           password
@@ -35,6 +35,7 @@ const UserLogin =(props)=>{
             <table>
                 <thead>Q&A게시판에 오신걸 환영합니다.</thead>
                 <tbody>
+                
                     <tr>
                         <th>아이디</th>
                         <td><input type='text' placeholder='아이디를 입력해주세요' name = 'username' value={login.username} onChange={handleLogin}/></td>

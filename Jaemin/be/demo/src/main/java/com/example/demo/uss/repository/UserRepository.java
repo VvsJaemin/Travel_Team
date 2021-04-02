@@ -11,9 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+   
+    @Transactional    
+    @Query(value="select user_no userNo, username password from users where username= :username and password= :password", nativeQuery = true )
+        User login(@Param("username") String username, @Param("password") String password);
+
+
+
     
-    @Transactional
-    @Query(value="select user_no userNo, username, password from users where user_no='userNo' and username='username' and password='password'", nativeQuery = true )
-        public User login(@Param("userNo") long userNo, @Param("username") String username, @Param("password") String password);
     
 }

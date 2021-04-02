@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ import lombok.extern.java.Log;
 @Log
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value="/user", method={})
+@RequestMapping(value="/user", method={RequestMethod.GET, RequestMethod.POST})
 @CrossOrigin("*")
 public class UserController {
 
@@ -32,23 +33,23 @@ public class UserController {
     
 
     @PostMapping("")
-    public ResponseEntity<String> save(
+    public ResponseEntity<?> save(
         @RequestBody User user){
             log.info("회원 가입 완료");
             service.save(user);
 
             log.info("Register user.getUserNo() = " + user.getUserNo());
 
-            return new ResponseEntity<>("등록 성공", HttpStatus.OK);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
     
         
-        @PostMapping("/login")
-        public ResponseEntity<?> login(@RequestBody User user)throws Exception{
+        @PostMapping("/login/{username}/{password}")
+        public ResponseEntity<?> login(@PathVariable("username") String username, @PathVariable("password") String password) throws Exception{
             log.info("login()");
-            log.info("로그인 성공 : " + user.getUserNo());
-            service.login(user);
+            log.info("로그인 성공 : " +username );
+           User u = service.login(username, password);
 
-            return new ResponseEntity<>(user,HttpStatus.OK);
+            return new ResponseEntity<>(u, HttpStatus.OK);
         }
 }

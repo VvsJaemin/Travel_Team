@@ -38,13 +38,13 @@ public class QnaBoardController {
     private final QnaBoardServiceImpl service; 
 
     @PostMapping("")
-    public ResponseEntity<String> save(
+    public ResponseEntity<?> save(
             @RequestBody QnaBoard qnaboard){
                 log.info("등록완료");
                 service.save(qnaboard);
 
                 log.info("register board.getBoardNo() = " + qnaboard.getBoardNo());
-                return new ResponseEntity<>("register success", HttpStatus.OK);
+                return new ResponseEntity<>(qnaboard, HttpStatus.OK);
             }
     
             @GetMapping("/list")

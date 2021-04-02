@@ -123,3 +123,10 @@
 [0401/201712.201:ERROR:crash_report_database_win.cc(457)] unexpected header
 [0401/203500.707:ERROR:crash_report_database_win.cc(457)] unexpected header
 [0401/221946.664:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0402/002107.984:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0402/003107.995:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0402/003107.995:ERROR:directory_reader_win.cc(43)] FindFirstFile: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0402/003107.995:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0402/003107.995:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0402/003607.992:ERROR:crash_report_database_win.cc(457)] unexpected header
+[0402/092314.920:ERROR:crash_report_database_win.cc(457)] unexpected header
