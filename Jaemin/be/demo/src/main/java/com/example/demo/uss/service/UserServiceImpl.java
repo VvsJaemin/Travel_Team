@@ -12,76 +12,68 @@ import com.example.demo.uss.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 @Log
 @Service
 @AllArgsConstructor
-public class UserServiceImpl extends UserAbstractService<User>implements UserSevice {
-    
+public class UserServiceImpl extends UserAbstractService<User> implements UserSevice {
+
     private final UserRepository repo;
 
-    @Override
-    public long count() {
+    // @Override public String login(String username, String password)throws Exception {
+    //     // TODO Auto-generated method stub
+    //     return repo.login(username, password);
+    // }
+
+    @Override public long count() {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    @Override
-    public boolean existsById(long id) {
+    @Override public boolean existsById(long id) {
         // TODO Auto-generated method stub
         return false;
     }
 
-    @Override
-    public List<User> findAll() {
+    @Override public List<User> findAll() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public Optional<User> findOne() {
+    @Override public Optional<User> findOne() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public void deleteById(long id) {
+    @Override public void deleteById(long id) {
         // TODO Auto-generated method stub
-        
+
     }
 
-    @Override
-    public User getOne(long id) {
+    @Override public User getOne(long id) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public User save(User entity) {
+    @Override public User save(User entity) {
         // TODO Auto-generated method stub
         return repo.save(entity);
     }
 
-    @Override
-    public Optional<User> findById(long id) {
+    @Override public Optional<User> findById(long id) {
         // TODO Auto-generated method stub
-        return repo.findById(id);
+        return null;
     }
 
     @Override
-    public User login(String username, String password) throws Exception {
+    public String login(String username, String password) throws Exception {
         // TODO Auto-generated method stub
-
-      return repo.login(username, password);
-
-
-        
+        return repo.login(username, password);
     }
 
-    
+  
 
-   
-    
-   
-    
+
+
 }

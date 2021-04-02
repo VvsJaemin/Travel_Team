@@ -4,5 +4,7 @@ import com.example.demo.uss.domain.User;
 
 public interface UserSevice {
     
-    User login(String username, String password)throws Exception;
+     String login(String username, String password)throws Exception;
+
+    // String login(User user) throws Exception;
 }

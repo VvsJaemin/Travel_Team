@@ -4,12 +4,12 @@ import axios from 'axios'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 const UserLogin =(props)=>{
-    const[login, setLogin] = useState({})
+    const[login, setLogin] = useState("")
     const {username, password} = login
 
     const loginOne =(e)=>{
         e.preventDefault();
-        axios.post(`http://localhost:8080/user/login/${username}/${password}`, {
+        axios.post(`http://localhost:8080/user/login`, {
           
           username,
           password
