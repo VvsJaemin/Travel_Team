@@ -4,15 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
+import com.amazonaws.services.simplesystemsmanagement.model.SessionStatus;
 import com.example.demo.uss.domain.User;
 import com.example.demo.uss.domain.UserDto;
 import com.example.demo.uss.service.UserServiceImpl;
 
+import org.springframework.boot.web.servlet.server.Session.Cookie;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -53,19 +58,40 @@ public class UserController {
     
         
         @PostMapping("/login")
-        public ResponseEntity<String> login(@Valid @RequestBody User user) throws Exception{
+        public ResponseEntity<String> login(@Valid @RequestBody User user, HttpSession session) throws Exception{
 
            String login = service.login(user.getUsername(), user.getPassword());
 
            System.out.println(user.getUsername());
+           System.out.println(user.getPassword());
+           System.out.println(user.getUserNo());
+           
+
 
            if(login != null){
                log.info("로그인 성공");
-               return new ResponseEntity<>(HttpStatus.OK);
+               session.setAttribute("login", user);
+               System.out.println("login 세션 확인 : " + user);
+               return new ResponseEntity<>(login,HttpStatus.OK);
            }else{
                log.info("다시 로그인 해주세요");
-               return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+               return new ResponseEntity<>(login,HttpStatus.UNAUTHORIZED);
            }
-
+    
         }
+
+        @GetMapping("/logout")
+        public ResponseEntity<String> logout(HttpSession session) throws Exception{
+
+            Object object = session.getAttribute("login");
+
+            if(object!=null){
+                session.removeAttribute("login");
+                session.invalidate();
+                log.info("로그아웃");
+            }
+            
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        
 }

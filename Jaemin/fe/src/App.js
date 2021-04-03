@@ -6,6 +6,7 @@ import QnaRead from './qbs/container/QnaRead'
 import { Route } from 'react-router-dom'
 import UserRegister from './uss/container/UserRegister'
 import UserLogin from './uss/container/UserLogin'
+import UserLogout from './uss/container/UserLogout'
 
 
 
@@ -20,6 +21,7 @@ const App =()=> {
     <Route path='/QnaRead/:id' component={QnaRead}/>
     <Route path='/UserRegister' component={UserRegister}/>
     <Route path='/UserLogin' component={UserLogin}/>
+    <Route path='/UserLogout' component={UserLogout}/>
     
 
   </>)

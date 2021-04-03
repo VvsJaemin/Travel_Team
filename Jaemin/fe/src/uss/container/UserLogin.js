@@ -48,6 +48,9 @@ const UserLogin =(props)=>{
                         <td>
                             <input type='button' onClick={loginOne} value='로그인'/>
                         </td>
+                        <td>
+                            <Link to={'/UserRegister'}><button>회원가입</button></Link>
+                        </td>
                     </tr>
                     <Link to={'/'}><button>나가기</button></Link>
                 </tbody>
