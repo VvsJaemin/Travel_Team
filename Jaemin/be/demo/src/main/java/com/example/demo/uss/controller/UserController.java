@@ -1,6 +1,7 @@
 package com.example.demo.uss.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,9 +23,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,8 +73,8 @@ public class UserController {
 
            if(login != null){
                log.info("로그인 성공");
-               session.setAttribute("login", user);
-               System.out.println("login 세션 확인 : " + user);
+               session.setAttribute("login", login);
+               System.out.println("login 세션 확인 : " + login);
                return new ResponseEntity<>(login,HttpStatus.OK);
            }else{
                log.info("다시 로그인 해주세요");
@@ -83,15 +86,45 @@ public class UserController {
         @GetMapping("/logout")
         public ResponseEntity<String> logout(HttpSession session) throws Exception{
 
-            Object object = session.getAttribute("login");
-
-            if(object!=null){
-                session.removeAttribute("login");
-                session.invalidate();
+                session.getAttribute("login");
+                session.invalidate(); 
                 log.info("로그아웃");
-            }
+            
             
             return new ResponseEntity<>(HttpStatus.OK);
         }
+
+        @GetMapping("/list")
+        public ResponseEntity<List<User>> list(){
+            log.info("get list()");
+
+            return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+        }
+
+        @GetMapping("/read/{userNo}")
+        public ResponseEntity<Optional<User>>read(@PathVariable ("userNo") Long userNo){
+            log.info("read()");
+            Optional<User> u = service.findById(userNo);
+            return new ResponseEntity<>(u, HttpStatus.OK);
+        }
         
+        @PutMapping("/modify/{userNo}")
+        public ResponseEntity<String> modify(@PathVariable("userNo") Long userNo, @RequestBody User user){
+            
+            log.info("put modify()" +user);
+            
+            log.info("userNo long: " + userNo);
+         
+
+            return new ResponseEntity<>("수정성공", HttpStatus.OK);
+        }
+
+        @DeleteMapping("/delete/{userNo}")
+        public ResponseEntity<String> remove(@PathVariable Long userNo){
+
+            service.deleteById(userNo);
+            log.info("delete");
+
+            return new ResponseEntity<>("삭제 성공", HttpStatus.OK);
+        }
 }

@@ -38,7 +38,7 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
 
     @Override public List<User> findAll() {
         // TODO Auto-generated method stub
-        return null;
+        return repo.findAll();
     }
 
     @Override public Optional<User> findOne() {
@@ -49,6 +49,7 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
     @Override public void deleteById(long id) {
         // TODO Auto-generated method stub
 
+       repo.deleteById(id);
     }
 
     @Override public User getOne(long id) {
@@ -63,7 +64,7 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
 
     @Override public Optional<User> findById(long id) {
         // TODO Auto-generated method stub
-        return null;
+        return repo.findById(id);
     }
 
     @Override

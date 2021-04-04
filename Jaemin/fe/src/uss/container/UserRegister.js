@@ -7,7 +7,11 @@ const UserRegister = (props) => {
 
     const {
         username,
-        password
+        password,
+        name,
+        email,
+        birthday,
+        gender
     
     } = register
 
@@ -16,7 +20,11 @@ const UserRegister = (props) => {
         axios
             .post(`http://localhost:8080/user`, {
                 username,
-                password
+                password,
+                name,
+                email,
+                birthday,
+                gender
             })
             .then(res => {
                 console.log(res)
@@ -65,10 +73,39 @@ const UserRegister = (props) => {
                             value={register.password}
                             onChange={handleSubmit}/></td>
                     </tr>
-                  
-                    
-                    
-                    {/* <tr>
+                    <tr>
+                        <th>
+                            이름
+                        </th>
+                        <td><input
+                            type='text'
+                            name='name'
+                            value={register.name}
+                            onChange={handleSubmit}/></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            이메일
+                        </th>
+                        <td><input
+                            type='text'
+                            placeholder='이메일을 입력하세요'
+                            name='email'
+                            value={register.email}
+                            onChange={handleSubmit}/></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            생년월일
+                        </th>
+                        <td><input
+                            type='text'
+                            placeholder='생년월일 입력하세요'
+                            name='birthday'
+                            value={register.birthday}
+                            onChange={handleSubmit}/></td>
+                    </tr>
+                    <tr>
                         <th>
                             성별
                         </th>
@@ -79,7 +116,7 @@ const UserRegister = (props) => {
                                 <option value="여성">여성</option>
                             </select>
                         </td>
-                    </tr> */}
+                    </tr>
                     <tr>
                         <td>
                             <input type='button' onClick={Register} value='등록'/>

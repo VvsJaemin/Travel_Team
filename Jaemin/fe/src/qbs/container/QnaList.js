@@ -35,6 +35,7 @@ const QnaList = () => {
       <Nav.Link href="/UserRegister">회원가입</Nav.Link>
       <Nav.Link href="/UserLogin">로그인</Nav.Link>
       <Nav.Link href="/UserLogout">로그아웃</Nav.Link>
+      <Nav.Link href="/UserList">회원정보</Nav.Link>
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />

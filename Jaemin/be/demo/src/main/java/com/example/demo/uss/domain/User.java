@@ -31,15 +31,14 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    // @Column(name="name") private String name;
+    @Column(name="name") private String name;
 
-    // @Email
-    // @NotNull(message="이메일을 다시 입력해주세요")
-    // @Column(name="email") private String email;
+    @Email
+    @Column(name="email") private String email;
 
-    // @Column(name="birthday") private String birthday;
+    @Column(name="birthday") private String birthday;
 
-    // @Column(name="gender") private String gender;
+    @Column(name="gender") private String gender;
 
     public User toEntity() {
         return User
@@ -47,14 +46,27 @@ public class User {
             .userNo(userNo)
             .password(password)
             .username(username)
+            .name(name)
+            .email(email)
+            .birthday(birthday)
+            .gender(gender)
             .build();
 
     }
-    @Builder public User(long userNo, String username, String password) {
+
+    @Builder
+    public User(long userNo, String username, String password, String name,
+            @Email String email, String birthday, String gender) {
         this.userNo = userNo;
         this.username = username;
         this.password = password;
+        this.name = name;
+        this.email = email;
+        this.birthday = birthday;
+        this.gender = gender;
     }
+
+
 
 
 }

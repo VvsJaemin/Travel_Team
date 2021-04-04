@@ -6,5 +6,5 @@ public interface UserSevice {
     
      String login(String username, String password)throws Exception;
 
-    // String login(User user) throws Exception;
 }
+ 

@@ -6,8 +6,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const UserLogin =(props)=>{
     const[login, setLogin] = useState("")
     const {username, password} = login
+   
+   
+    const handleLogin = useCallback(e=>{
+        const {name, value} = e.target;
+        setLogin({...login, 
+            [name] : value});
+    }, [login])
 
-    const loginOne =(e)=>{
+
+    const loginOne = useCallback(e=>{
         e.preventDefault();
         axios.post(`http://localhost:8080/user/login`, {
           
@@ -15,7 +23,8 @@ const UserLogin =(props)=>{
           password
         })
                 .then((res)=>{
-                    alert("로그인되셨습니다.")
+                    
+                    alert('로그인 됐습니다.')
                     console.log(res)
                     props.history.push("/")
                 })
@@ -23,15 +32,11 @@ const UserLogin =(props)=>{
                     alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
                 })
               
-            }
-    const handleLogin = useCallback(e=>{
-        const {name, value} = e.target;
-        setLogin({...login, 
-            [name] : value});
-    }, [login])
+            },[username, password])
+   
 
     return(
-        <form>
+        <form onSubmit={loginOne} method="post">
             <table>
                 <thead>Q&A게시판에 오신걸 환영합니다.</thead>
                 <tbody>
@@ -46,7 +51,7 @@ const UserLogin =(props)=>{
                     </tr>
                     <tr>
                         <td>
-                            <input type='button' onClick={loginOne} value='로그인'/>
+                            <button type='submit' onClick={()=>loginOne}>로그인</button>
                         </td>
                         <td>
                             <Link to={'/UserRegister'}><button>회원가입</button></Link>
