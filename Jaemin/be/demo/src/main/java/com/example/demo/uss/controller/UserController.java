@@ -41,90 +41,73 @@ import lombok.extern.java.Log;
 @Log
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 @CrossOrigin("*")
 public class UserController {
 
     private final UserServiceImpl service;
-    
 
     @PostMapping("")
-    public ResponseEntity<?> save(@Validated
-        @RequestBody User user){
-            log.info("회원 가입 완료");
-            service.save(user);
+    public ResponseEntity<?> save(@Validated @RequestBody User user) {
+        log.info("회원 가입 완료");
+        service.save(user);
 
-            log.info("Register user.getUserNo() = " + user.getUserNo());
+        log.info("Register user.getUserNo() = " + user.getUserNo());
 
-            return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@Valid @RequestBody User user) throws Exception {
+
+        String login = service.login(user.getUsername(), user.getPassword());
+
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+
+        if (login != null) {
+            log.info("로그인 성공");
+            System.out.println("login 세션 확인 : " + login);
+            return new ResponseEntity<>(login, HttpStatus.OK);
+        } else {
+            log.info("다시 로그인 해주세요");
+            return new ResponseEntity<>(login, HttpStatus.UNAUTHORIZED);
         }
-    
+
+    }
+
+
+    // @GetMapping("/list")
+    // public ResponseEntity<List<User>> list() {
+    //     log.info("get list()");
+
+    //     return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    // }
+
+    @GetMapping("/read/{username}")
+    public ResponseEntity <Optional<User>> read(@PathVariable("username") String username) {
+        log.info("read()");
+        Optional<User> u = service.findByUsername(username);
+        return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+
+    @PutMapping("/modify/{username}")
+    public ResponseEntity<User> modify(@PathVariable("username") String username, @RequestBody User user) {
+       
         
-        @PostMapping("/login")
-        public ResponseEntity<String> login(@Valid @RequestBody User user, HttpSession session) throws Exception{
+        log.info("put modify()" + user);
 
-           String login = service.login(user.getUsername(), user.getPassword());
+        log.info("username : " + username);
 
-           System.out.println(user.getUsername());
-           System.out.println(user.getPassword());
-           System.out.println(user.getUserNo());
-           
+        return new ResponseEntity<>(service.save(user), HttpStatus.OK);
+    }
 
+    @DeleteMapping("/delete/{username}")
+    public ResponseEntity<String> remove(@PathVariable String username) {
 
-           if(login != null){
-               log.info("로그인 성공");
-               session.setAttribute("login", login);
-               System.out.println("login 세션 확인 : " + login);
-               return new ResponseEntity<>(login,HttpStatus.OK);
-           }else{
-               log.info("다시 로그인 해주세요");
-               return new ResponseEntity<>(login,HttpStatus.UNAUTHORIZED);
-           }
-    
-        }
+        service.deleteByUsername(username);
+        log.info("delete");
 
-        @GetMapping("/logout")
-        public ResponseEntity<String> logout(HttpSession session) throws Exception{
-
-                session.getAttribute("login");
-                session.invalidate(); 
-                log.info("로그아웃");
-            
-            
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-
-        @GetMapping("/list")
-        public ResponseEntity<List<User>> list(){
-            log.info("get list()");
-
-            return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
-        }
-
-        @GetMapping("/read/{userNo}")
-        public ResponseEntity<Optional<User>>read(@PathVariable ("userNo") Long userNo){
-            log.info("read()");
-            Optional<User> u = service.findById(userNo);
-            return new ResponseEntity<>(u, HttpStatus.OK);
-        }
-        
-        @PutMapping("/modify/{userNo}")
-        public ResponseEntity<String> modify(@PathVariable("userNo") Long userNo, @RequestBody User user){
-            
-            log.info("put modify()" +user);
-            
-            log.info("userNo long: " + userNo);
-         
-
-            return new ResponseEntity<>("수정성공", HttpStatus.OK);
-        }
-
-        @DeleteMapping("/delete/{userNo}")
-        public ResponseEntity<String> remove(@PathVariable Long userNo){
-
-            service.deleteById(userNo);
-            log.info("delete");
-
-            return new ResponseEntity<>("삭제 성공", HttpStatus.OK);
-        }
+        return new ResponseEntity<>("delete success!", HttpStatus.OK);
+    }
 }

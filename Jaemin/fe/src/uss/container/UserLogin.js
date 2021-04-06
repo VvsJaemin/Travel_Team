@@ -22,11 +22,15 @@ const UserLogin =(props)=>{
           username,
           password
         })
-                .then((res)=>{
-                    
+                .then(res=>{
                     alert('로그인 됐습니다.')
                     console.log(res)
-                    props.history.push("/")
+                    if(res.data){
+                        localStorage.clear()
+                        localStorage.setItem("0", res.data)
+                        console.log(localStorage.getItem("0"))
+                        props.history.push("/")
+                    }
                 })
                 .catch(()=>{
                     alert('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')

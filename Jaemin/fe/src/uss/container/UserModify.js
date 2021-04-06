@@ -22,6 +22,9 @@ const UserModify=(props)=>{
         .then(res=>{
             console.log(res)
             setUpdate(res.data)
+            localStorage.clear()
+            localStorage.setItem("0", res.data)
+            fetchOne()
             alert('회원 정보가 수정되었습니다.')
             props.history.push(`/UserRead/${props.match.params.userId}`)
         })
@@ -35,6 +38,7 @@ const UserModify=(props)=>{
         .then(res=>{
             console.log(res)
             setUpdate(res.data)
+            
         })
         .catch((err)=>{
             console.log(err)

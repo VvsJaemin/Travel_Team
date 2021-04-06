@@ -63,7 +63,7 @@ const QnaModify = (props) => {
                         </th>
                         <td><input
                             type='text'
-                            placeholder='제목을 수정하세요'
+                
                             name='title'
                             value={update.title}
                             onChange={handleChange}/></td>

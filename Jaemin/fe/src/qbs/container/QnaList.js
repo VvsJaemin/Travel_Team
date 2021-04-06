@@ -5,7 +5,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom';
 import '../component/QnaList.css'
 
-const QnaList = () => {
+const QnaList = (props) => {
 
     const [List, setList] = useState([]);
 
@@ -33,9 +33,13 @@ const QnaList = () => {
     <Nav className="mr-auto">
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/UserRegister">회원가입</Nav.Link>
-      <Nav.Link href="/UserLogin">로그인</Nav.Link>
-      <Nav.Link href="/UserLogout">로그아웃</Nav.Link>
-      <Nav.Link href="/UserList">회원정보</Nav.Link>
+      {localStorage.getItem("0") ? <button onClick={() => {
+          localStorage.clear();
+          props.history.push("/")
+          console.log(localStorage.getItem("0"))
+      }}>로그아웃</button> :  <Nav.Link href="/UserLogin">로그인</Nav.Link>}
+      {localStorage.getItem("0") && <Nav.Link href={`/UserRead/${localStorage.getItem("0")}`}>회원정보</Nav.Link>}
+      {/* <Nav.Link href="/UserList">회원정보</Nav.Link> */}
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />

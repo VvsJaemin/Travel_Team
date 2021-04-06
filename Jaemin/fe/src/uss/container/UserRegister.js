@@ -111,7 +111,6 @@ const UserRegister = (props) => {
                         </th>
                         <td>
                             <select name="gender" value={register.gender} onChange={handleSubmit}>
-                                <option value="">성별</option>
                                 <option value="남성">남성</option>
                                 <option value="여성">여성</option>
                             </select>

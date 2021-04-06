@@ -1,76 +1,109 @@
 import React, {useEffect, useState, useCallback} from 'react'
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios'
 
 const UserRead=(props)=>{
-
+    const history = useHistory()
     const [detail, setDetail] = useState({})
 
     const fetchOne = ()=>{
 
-        axios.get(`http://localhost:8080/user/read/${props.match.params.userid}`)
-        .then((res) => {
+        axios.get(`http://localhost:8080/user/read/${props.match.params.username}`, detail)
+        .then(res => {
             console.log(res)
             setDetail(res.data)
+           
         })
         .catch(err =>{
             console.log(err)
         } )
     }
 
+    const Modify =(e)=>{
+        e.preventDefault();
+        axios.put(`http://localhost:8080/user/modify/${props.match.params.username}`,detail)
+        .then(res=>{
+            console.log(res.data)
+            setDetail(res.data)
+            localStorage.clear()
+            localStorage.setItem("0", res.data)
+            fetchOne()
+            alert('회원 정보가 수정되었습니다.')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     const deleteUser =()=>{
         if(window.confirm('정말 삭제하시겠습니까?'))
-            axios.delete(`http://localhost:8080/user/delete/${props.match.params.userid}`)
+            axios.delete(`http://localhost:8080/user/delete/${props.match.params.username}`, detail)
             .then(res=>{
-                console.log(res)
+                alert(res.data)
+                localStorage.clear()
+                localStorage.removeItem("0")
                 alert('회원 탈퇴가 정상적으로 처리 됐습니다.')
-                props.history.push('/UserList')
+                history.go("/")
             } )
             .catch((err =>{
                 console.log(err)
             } ))
     }
-
     useEffect(()=>{
-        fetchOne()
-    },[])
+                fetchOne();
+                console.log("새로고침");
+            }, [])
 
+            const handleChange = useCallback(e=>{
+                const{name, value} =e.target;
+                setDetail({...detail,
+                    [name] : value})
+            },[detail])
+        
     return(
 
         <>
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>아이디</th>
-                    <th>이름</th>
-                    <th>이메일</th>
-                    <th>생년월일</th>
-                    <th>성별</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{detail.userNo}</td>
-                    <td>{detail.username}</td>
-                    <td>{detail.name}</td>
-                    <td>{detail.email}</td>
-                    <td>{detail.birthday}</td>
-                    <td>{detail.gender}</td>
-                </tr>
+          <form>
+            <table>
+                <thead>회원정보 수정</thead>
+                <tbody>
+                    <tr>
+                        <th>아이디</th>
+                        <td><input name='username' value={detail.username} onChange={handleChange}readOnly></input></td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td><input type='password' placeholder='비밀번호 수정하세요' name='password' value={detail.password} onChange={handleChange}/></td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td><input name='name' value={detail.name} onChange={handleChange} readOnly></input></td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td><input type='text' placeholder='이메일을 수정하세요' name='email' value={detail.email} onChange={handleChange}/></td>
+                    </tr>
+                    <tr>
+                        <th>생년월일</th>
+                        <td><input name='birthday' value={detail.birthday} onChange={handleChange} readOnly></input></td>
+                    </tr>
+                    <tr>
+                        <th>성별</th>
+                        <td>  <select name="gender" value={detail.gender} onChange={handleChange}>
+                                <option value="남성">남성</option>
+                                <option value="여성">여성</option>
+                            </select></td>
+                    </tr>
             </tbody>
         </table>
         <div>
-            <Link to={`/UserModify/${detail.userNo}`}>
-                <button>수정하기</button>
-            </Link>
-        </div>
-        <div>
         <button onClick={deleteUser}>삭제하기</button>
+        <button type="submit" onClick={Modify}>변경하기</button>
         <td>
             <Link to='/'><button>나가기</button></Link>
         </td>
         </div>
+        </form>
         </>
         )
 }

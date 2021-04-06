@@ -21,10 +21,9 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
 
     private final UserRepository repo;
 
-    // @Override public String login(String username, String password)throws Exception {
-    //     // TODO Auto-generated method stub
-    //     return repo.login(username, password);
-    // }
+    // @Override public String login(String username, String password)throws
+    // Exception {
+    // TODO Auto-generated method stub     return repo.login(username, password); }
 
     @Override public long count() {
         // TODO Auto-generated method stub
@@ -49,7 +48,7 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
     @Override public void deleteById(long id) {
         // TODO Auto-generated method stub
 
-       repo.deleteById(id);
+        repo.deleteById(id);
     }
 
     @Override public User getOne(long id) {
@@ -67,14 +66,27 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
         return repo.findById(id);
     }
 
-    @Override
-    public String login(String username, String password) throws Exception {
+    @Override public String login(String username, String password)throws Exception {
         // TODO Auto-generated method stub
         return repo.login(username, password);
     }
 
-  
+    @Override public boolean existsByUsername(String username) {
+        // TODO Auto-generated method stub
+        return repo.existsByUsername(username);
+    }
 
+    @Override public Optional<User> findByUsername(String username) {
+        // TODO Auto-generated method stub
+        return repo.findByUsername(username);
+    }
 
+    @Override
+    public void deleteByUsername(String username) {
+        // TODO Auto-generated method stub
+           repo.deleteByUsername(username);
+    }
+
+   
 
 }

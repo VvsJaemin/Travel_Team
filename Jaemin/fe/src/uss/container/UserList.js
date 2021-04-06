@@ -31,7 +31,7 @@ const UserList = () => {
                 <td>이메일</td>
                 <td>생년월일</td>
                 <td>성별</td>
-                <td>상세읽기</td>
+                <td>상세정보</td>
             </tr>
         </thead>
         <tbody>

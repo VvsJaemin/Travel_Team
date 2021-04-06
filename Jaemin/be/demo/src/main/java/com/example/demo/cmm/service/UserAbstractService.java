@@ -14,4 +14,5 @@ public  abstract class UserAbstractService<T> {
 	public abstract T getOne(long id);
 	public abstract User save(T entity);
 	public abstract  Optional<User> findById(long id);
+	
 }
