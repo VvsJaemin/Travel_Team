@@ -22,7 +22,6 @@ const QnaList = (props) => {
     };
 
     useEffect(() => {
-        console.log(List)
         fetchList();
     }, [])
 

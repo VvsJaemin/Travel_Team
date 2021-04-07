@@ -3,12 +3,11 @@ import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios'
 
 const UserRead=(props)=>{
-    const history = useHistory()
     const [detail, setDetail] = useState({})
 
     const fetchOne = ()=>{
 
-        axios.get(`http://localhost:8080/user/read/${props.match.params.username}`, detail)
+        axios.get(`http://localhost:8080/user/read/${props.match.params.username}`)
         .then(res => {
             console.log(res)
             setDetail(res.data)
@@ -19,9 +18,9 @@ const UserRead=(props)=>{
         } )
     }
 
-    const Modify =(e)=>{
-        e.preventDefault();
-        axios.put(`http://localhost:8080/user/modify/${props.match.params.username}`,detail)
+    const Modify =()=>{
+        
+        axios.put(`http://localhost:8080/user/modify/${props.match.params.username}`,detail) 
         .then(res=>{
             console.log(res.data)
             setDetail(res.data)
@@ -36,34 +35,34 @@ const UserRead=(props)=>{
     }
 
     const deleteUser =()=>{
+        
         if(window.confirm('정말 삭제하시겠습니까?'))
-            axios.delete(`http://localhost:8080/user/delete/${props.match.params.username}`, detail)
+            axios.delete(`http://localhost:8080/user/delete/${props.match.params.username}`)
             .then(res=>{
-                alert(res.data)
-                localStorage.clear()
-                localStorage.removeItem("0")
+                console.log(res)
+                localStorage.clear() // 
                 alert('회원 탈퇴가 정상적으로 처리 됐습니다.')
-                history.go("/")
-            } )
-            .catch((err =>{
+                props.history.push("/")
+            })
+            .catch(err =>{
                 console.log(err)
-            } ))
+            })
     }
-    useEffect(()=>{
-                fetchOne();
-                console.log("새로고침");
-            }, [])
+    
+    useEffect(()=> {
+        fetchOne()
+    }, [])
 
-            const handleChange = useCallback(e=>{
-                const{name, value} =e.target;
-                setDetail({...detail,
-                    [name] : value})
-            },[detail])
+    const handleChange = useCallback(e=>{
+        const{name, value} =e.target;
+        setDetail({...detail,
+            [name] : value})
+    },[detail])
         
     return(
 
         <>
-          <form>
+          <form onSubmit={ e => e.preventDefault() }>
             <table>
                 <thead>회원정보 수정</thead>
                 <tbody>

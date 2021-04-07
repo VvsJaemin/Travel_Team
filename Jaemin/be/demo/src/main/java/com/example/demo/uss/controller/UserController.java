@@ -108,6 +108,6 @@ public class UserController {
         service.deleteByUsername(username);
         log.info("delete");
 
-        return new ResponseEntity<>("delete success!", HttpStatus.OK);
+        return new ResponseEntity<>("delete success!", HttpStatus.NO_CONTENT);
     }
 }
