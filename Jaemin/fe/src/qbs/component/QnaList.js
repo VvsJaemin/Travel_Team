@@ -3,7 +3,7 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import {Link} from 'react-router-dom';
-import '../component/QnaList.css'
+import 'qbs/style/QnaList.css'
 
 const QnaList = (props) => {
 

@@ -67,6 +67,8 @@ public class UserServiceImpl extends UserAbstractService<User> implements UserSe
     }
 
     @Override public String login(String username, String password)throws Exception {
+
+        
         // TODO Auto-generated method stub
         return repo.login(username, password);
     }

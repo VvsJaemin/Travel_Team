@@ -1,13 +1,7 @@
 import React from 'react'
-import QnaRegister from './qbs/container/QnaRegister'
-import QnaList from './qbs/container/QnaList'
-import QnaModify from './qbs/container/QnaModify'
-import QnaRead from './qbs/container/QnaRead'
+import { QnaRegister, QnaList, QnaModify, QnaRead} from 'qbs/index'
+import {UserRegister, UserLogin, UserList, UserRead} from 'uss/index'
 import { Route } from 'react-router-dom'
-import UserRegister from './uss/container/UserRegister'
-import UserLogin from './uss/container/UserLogin'
-import UserList from './uss/container/UserList'
-import UserRead from './uss/container/UserRead'
 // import UserModify from './uss/container/UserModify'
 
 

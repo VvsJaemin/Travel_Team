@@ -24,9 +24,6 @@ const UserRead=(props)=>{
         .then(res=>{
             console.log(res.data)
             setDetail(res.data)
-            localStorage.clear()
-            localStorage.setItem("0", res.data)
-            fetchOne()
             alert('회원 정보가 수정되었습니다.')
         })
         .catch((err)=>{

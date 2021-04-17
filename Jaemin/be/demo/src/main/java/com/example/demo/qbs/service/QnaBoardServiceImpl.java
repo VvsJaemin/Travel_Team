@@ -21,11 +21,6 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
 
     private final QnaBoardRepository repo;
 
-    @Override public void update(QnaBoard qnaboard)throws Exception {
-        // TODO Auto-generated method stub
-
-        repo.modify(qnaboard.getTitle(), qnaboard.getContent(), qnaboard.getBoardNo());
-    }
 
     @Override public long count() {
         // TODO Auto-generated method stub
@@ -65,10 +60,7 @@ public class QnaBoardServiceImpl extends AbstractService<QnaBoard> implements Qn
 
         return repo.findById(id);
     }
+    
 
-    @Override public void register(QnaBoard qnaboard)throws Exception {
-        // TODO Auto-generated method stub
-        repo.create(qnaboard.getTitle(), qnaboard.getContent(), qnaboard.getWriter());
-    }
 
 }

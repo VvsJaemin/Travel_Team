@@ -9,8 +9,4 @@ import org.springframework.stereotype.Service;
 
 public interface QnaBoardService {
 
-    public void register(QnaBoard qnaboard)throws Exception;
-
-    public void update(QnaBoard qnaboard)throws Exception;
-
 }

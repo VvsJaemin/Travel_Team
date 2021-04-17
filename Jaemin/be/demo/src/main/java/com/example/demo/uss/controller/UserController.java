@@ -58,16 +58,22 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody User user) throws Exception {
+    public ResponseEntity<String> login(@Valid @RequestBody User user)throws Exception {
 
         String login = service.login(user.getUsername(), user.getPassword());
 
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
+        System
+            .out
+            .println(user.getUsername());
+        System
+            .out
+            .println(user.getPassword());
 
         if (login != null) {
             log.info("로그인 성공");
-            System.out.println("login 세션 확인 : " + login);
+            System
+                .out
+                .println("login 세션 확인 : " + login);
             return new ResponseEntity<>(login, HttpStatus.OK);
         } else {
             log.info("다시 로그인 해주세요");
@@ -76,25 +82,21 @@ public class UserController {
 
     }
 
-
-    // @GetMapping("/list")
-    // public ResponseEntity<List<User>> list() {
-    //     log.info("get list()");
-
-    //     return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
-    // }
-
     @GetMapping("/read/{username}")
-    public ResponseEntity <Optional<User>> read(@PathVariable("username") String username) {
+    public ResponseEntity<Optional<User>> read(
+        @PathVariable("username")String username
+    ) {
         log.info("read()");
         Optional<User> u = service.findByUsername(username);
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
     @PutMapping("/modify/{username}")
-    public ResponseEntity<User> modify(@PathVariable("username") String username, @RequestBody User user) {
-       
-        
+    public ResponseEntity<User> modify(
+        @PathVariable("username")String username,
+        @RequestBody User user
+    ) {
+
         log.info("put modify()" + user);
 
         log.info("username : " + username);

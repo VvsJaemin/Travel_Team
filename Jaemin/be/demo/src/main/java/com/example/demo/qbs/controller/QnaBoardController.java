@@ -37,7 +37,7 @@ public class QnaBoardController {
     private final QnaBoardServiceImpl service;
 
     @PostMapping("")
-    public ResponseEntity<?> save(@RequestBody QnaBoard qnaboard) {
+    public ResponseEntity<QnaBoard> save(@RequestBody QnaBoard qnaboard) {
         log.info("등록완료");
         service.save(qnaboard);
 
